@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/shared/Navbar";
+import Footer from "@/components/shared/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,8 +22,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased bg-[#EEEDE7]`} >
-        {children}
+        <nav className="py-4 px-[30px] md:px-[100px] bg-[#F2F2F2]">
+          <Navbar />
+        </nav>
+        <div className=" min-h-screen  px-[30px] md:px-[100px] pt-[90px] ">
+          {children}
+        </div>
+        <footer className="mt-[50px] bg-[#E8E6DE]  px-[30px] md:px-[100px] ">
+          <Footer />
+        </footer>
+
       </body>
-    </html>
+    </html >
   );
 }

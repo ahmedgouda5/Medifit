@@ -4,10 +4,10 @@ interface NavbarItem {
 }
 
 export const navbarItems: NavbarItem[] = [
-  { label: "Home", href: "/home" },
-  { label: "Shop", href: "/shop" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Home", href: "/" },
+  { label: "Shop", href: "/Shop" },
+  { label: "About", href: "/About" },
+  { label: "Contact", href: "/Contact" },
 ];
 
 export interface Category {
