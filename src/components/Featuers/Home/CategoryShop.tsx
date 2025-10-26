@@ -51,7 +51,7 @@ const CategoryShop = () => {
               </div>
               <div>
                 <Image
-                  src={product.image || "/about/vitamin.svg"} alt={product.name}
+                  src={product.image || "/vitamin.png"} alt={product.name}
                   width={100}
                   height={100}
                   className="object-contain"
