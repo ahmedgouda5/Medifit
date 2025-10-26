@@ -101,7 +101,7 @@ export const LatestProduct: Product[] = [
   {
     id: 3,
     name: "Vitamin serum",
-    image: "/vitamin.svg",
+    image: "/about/vitamin.svg",
     price: 20.0,
   },
   {
