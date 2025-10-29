@@ -1,10 +1,11 @@
 import { Handbag } from "lucide-react";
 import Button from "../../shared/Button";
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   return (
-    <div className="flex flex-col-reverse sm:flex-row justify-between items-center relative z-40  sm:gap-0  sm:px-0">
+    <div className="  flex flex-col-reverse sm:flex-row justify-between items-center relative z-10  sm:gap-0  sm:px-0">
       <div className="space-y-3 text-center sm:text-left">
         <h1 className="text-4xl sm:text-[70px] font-bold text-[#503217] leading-tight">
           Your trusted <br /> care now <br /> and always
@@ -14,7 +15,7 @@ const Hero = () => {
           plan.
         </p>
         <div className="flex justify-center sm:justify-start">
-          <Button text="Shop now" icon={<Handbag size={15} />} />
+          <Link href="/Shop">   <Button text="Shop now" icon={<Handbag size={15} />} /></Link>
         </div>
       </div>
 

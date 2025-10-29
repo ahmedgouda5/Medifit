@@ -1,19 +1,39 @@
-import { AnimatedTestimonialsDemo } from '@/components/Featuers/shop/AnimatedTestimonialsDemo'
-import Collectionshop from '@/components/Featuers/shop/collectionshop'
-import SectionHeading from '@/components/shared/SectionHeading'
-import { CreditCard, FolderSync, Headphones, SquarePen, Truck } from 'lucide-react'
-import React from 'react'
-import Button from "@/components/shared/Button"
-import Image from 'next/image'
-import RecentProducts from '@/components/Featuers/shop/recentProducts'
-import { Shop } from '@/lib/data'
+import Image from "next/image";
+import { collectionstore, Shop } from "@/lib/data";
+import Button from "@/components/shared/Button";
+import { CreditCard, FolderSync, Headphones, ShoppingCart, SquarePen, Truck } from "lucide-react";
+import RecentProducts from "@/components/Featuers/shop/recentProducts";
+import { AnimatedTestimonialsDemo } from "@/components/Featuers/shop/AnimatedTestimonialsDemo";
+import SectionHeading from "@/components/shared/SectionHeading";
 
-const page = () => {
+const page = async ({ params }: { params: { id: string } }) => {
+    const { id } = await params;
+    const data = collectionstore.find((item) => item.id === +id);
+
+    if (!data) {
+        return <div className="text-center text-red-500">Product not found</div>;
+    }
+
     return (
         <main>
-            <section>
-                <Collectionshop />
-            </section>
+            <div className="p-6 flex flex-col md:flex-row gap-10 justify-between items-start">
+                <div className="bg-[#F2F2F2] p-4 rounded-lg ">
+                    <Image
+                        src={data.image}
+                        alt={data.name}
+                        width={250}
+                        height={250}
+                        className="object-contain"
+                    />
+                </div>
+                <div>
+                    <h4 className=" text-[#503217] font-semibold text-5xl">{data.name}</h4>
+                    <p className="text-[#8F7D6A] text-md my-3 text-2xl">${data.price} USD</p>
+                    <Button text="Add to cart" icon={<ShoppingCart size={15} />} />
+                    <h5 className="text-[#503217] font-bold my-3">Product Description</h5>
+                    <p className="text-[#8F7D6A] mt-2 line-clamp-3">{data.desc}</p>
+                </div>
+            </div>
             <section className=" flex justify-evenly flex-col md:flex-row gap-10 md:gap-0 pt-30  p-5 rounded-lg ">
                 <div className="flex  items-center flex-col justify-center">
                     <span className="  text-[#503217] ">
@@ -46,7 +66,7 @@ const page = () => {
                 </header>
                 <AnimatedTestimonialsDemo />
             </section>
-            <RecentProducts/>
+            <RecentProducts />
             <section className="flex flex-col md:flex-row items-center justify-between gap-10 mt-5 bg-[#F2F2F2] p-10 rounded-2xl">
                 <div className="flex-1 w-full">
                     <h4 className="text-[#503217] text-2xl font-semibold mb-2">Join our trustable Medifit product  community</h4>
@@ -70,7 +90,7 @@ const page = () => {
                 </div>
             </section>
         </main>
-    )
-}
+    );
+};
 
-export default page
+export default page;
