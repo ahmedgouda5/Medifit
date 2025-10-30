@@ -1,34 +1,50 @@
-"use client"
-import { collectionstore } from '@/lib/data'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import React from 'react'
+"use client";
+import { Product } from "@/lib/data";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React, { useState, useEffect } from "react";
 
 const Collectionshop = () => {
-    const router = useRouter()
-    return (
-        <main>
-            <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-20">
-                {collectionstore.map((product) => (
-                    <div key={product.id} className="text-center cursor-pointer" onClick={() => { router.push(`/Shop/${product.id}`) }}>
-                        <div className="bg-[#F2F2F2] p-4 rounded-lg flex justify-center items-center h-[200px]">
-                            <Image
-                                src={product.image}
-                                alt={product.name}
+  const [products, setProducts] = useState<Product[]>([]);
+  const router = useRouter();
 
-                                width={100}
-                                height={100}
-                                className="object-contain "
+  useEffect(() => {
+    fetch("/api/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.error("Error fetching products:", err));
+  }, []);
 
-                            />
-                        </div>
-                        <h4 className="mt-3 text-[#503217] text-left font-semibold">{product.name}</h4>
-                        <p className="text-[#8F7D6A] text-left text-sm">${product.price} USD</p>
-                    </div>
-                ))}
-            </section>
-        </main>
-    )
-}
+  console.log(products)
+  return (
+    <main>
+      <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-20">
+        {products.map((product) => (
+          <div
+            key={product.id}
+            className="text-center cursor-pointer"
+            onClick={() => router.push(`/Shop/${product.id}`)}
+          >
+            <div className="bg-[#F2F2F2] p-4 rounded-lg flex justify-center items-center h-[200px]">
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={100}
+                height={100}
+                className="object-contain"
+              />
+            </div>
+            <h4 className="mt-3 text-[#503217] text-left font-semibold">
+              {product.name}
+            </h4>
+            <p className="text-[#8F7D6A] text-left text-sm">
+              ${product.price} USD
+            </p>
+          </div>
+        ))}
+      </section>
+    </main>
+  );
+};
 
-export default Collectionshop
+export default Collectionshop;
