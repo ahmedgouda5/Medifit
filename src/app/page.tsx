@@ -4,10 +4,11 @@ import CollectionStore from "@/components/Featuers/Home/collectionStore";
 import Hero from "@/components/Featuers/Home/Hero";
 import LatestProductCom from "@/components/Featuers/Home/LatestProductCom";
 import SocialMedifit from "@/components/Featuers/Home/SocialMedifit";
-
 import React from "react";
 
 const Home = () => {
+
+   
   return <>
 
 

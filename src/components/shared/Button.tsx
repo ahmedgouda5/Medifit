@@ -1,12 +1,21 @@
-import React from 'react'
+import React from "react";
 
-const Button = ({text,icon}:{text:string,icon:React.ReactNode}) => {
-  return (
-    <button className="bg-[#503217] hover-bg-[#8F7D6A] text-white py-2 px-4 rounded-lg flex items-center">
-      {icon}
-      <span className="ml-2 font-mono text-[12px]">{text}</span>
-    </button>
-  )
+interface ButtonProps {
+  text: string;
+  icon?: React.ReactNode;
+  onClick?: () => void;
 }
+
+const Button: React.FC<ButtonProps> = ({ text, icon, onClick }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="bg-[#503217] hover:bg-[#8F7D6A] text-white py-2 px-4 rounded-lg flex items-center transition-all duration-200"
+    >
+      {icon && <span className="mr-2">{icon}</span>}
+      <span className="font-mono text-[12px]">{text}</span>
+    </button>
+  );
+};
 
 export default Button;

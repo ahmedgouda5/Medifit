@@ -1,6 +1,9 @@
+import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  const { userId } = await auth(); // ✅ استخدم await
+
   const data = [
     {
       id: 1,
@@ -59,5 +62,9 @@ export async function GET() {
       desc: "Daily multivitamin supplement formulated to support immune system health, energy production, and wellness.",
     },
   ];
-  return NextResponse.json(data);
+
+  return NextResponse.json({
+    userId, // ✅ رجع الـ userId هنا
+    data, // ✅ والبيانات كمان
+  });
 }

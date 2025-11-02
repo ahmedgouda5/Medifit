@@ -6,16 +6,25 @@ import React, { useState, useEffect } from "react";
 
 const Collectionshop = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const[userId,setUserId] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
     fetch("/api/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data))
+      .then((data) => {
+      setProducts(data.data);
+      setUserId(data.userId);
+    })
       .catch((err) => console.error("Error fetching products:", err));
   }, []);
 
-  console.log(products)
+  // 🔹 useEffect جديدة علشان تراقب التغيير وتطبع بعد التحديث
+  useEffect(() => {
+    console.log("✅ Products after fetch:", products,userId);
+
+  }, [products]);
+
   return (
     <main>
       <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-20">
