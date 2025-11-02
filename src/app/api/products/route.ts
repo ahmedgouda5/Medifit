@@ -1,8 +1,6 @@
-import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const { userId } = await auth(); // ✅ استخدم await
 
   const data = [
     {
@@ -64,7 +62,6 @@ export async function GET() {
   ];
 
   return NextResponse.json({
-    userId, // ✅ رجع الـ userId هنا
-    data, // ✅ والبيانات كمان
+    data,
   });
 }

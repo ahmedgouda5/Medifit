@@ -7,8 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Cart from "./cart";
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import Button from "./Button";
 
 const Navbar = () => {
   const router = useRouter();
@@ -75,32 +73,11 @@ const Navbar = () => {
               </div>
             </li>
 
-            {/* Mobile UserButton */}
-            <li className="md:hidden flex justify-center items-center">
-              <SignedIn>
-                <UserButton afterSignOutUrl="/" />
-              </SignedIn>
-              <SignedOut>
-                <Button
-                  text="Sign In"
-                  onClick={() => router.push("/sign-in")}
-                />
-              </SignedOut>
-            </li>
+          
           </ul>
 
           {/* Desktop Right Section */}
-          <div className="hidden md:flex items-center space-x-6">
-            <SignedIn>
-              <UserButton afterSignOutUrl="/" />
-            </SignedIn>
-            <SignedOut>
-              <Button
-                text="Sign In"
-                onClick={() => router.push("/sign-in")}
-              />
-            </SignedOut>
-
+          <div className="hidden md:flex items-center space-x-6 relative">
             <div
               className="relative text-[#503217] cursor-pointer"
               onClick={() => setIsCartOpen(true)}

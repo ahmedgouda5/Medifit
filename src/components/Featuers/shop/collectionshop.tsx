@@ -6,7 +6,6 @@ import React, { useState, useEffect } from "react";
 
 const Collectionshop = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const[userId,setUserId] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -14,16 +13,11 @@ const Collectionshop = () => {
       .then((res) => res.json())
       .then((data) => {
       setProducts(data.data);
-      setUserId(data.userId);
     })
       .catch((err) => console.error("Error fetching products:", err));
   }, []);
 
-  // 🔹 useEffect جديدة علشان تراقب التغيير وتطبع بعد التحديث
-  useEffect(() => {
-    console.log("✅ Products after fetch:", products,userId);
 
-  }, [products]);
 
   return (
     <main>
