@@ -8,14 +8,9 @@ import dynamic from "next/dynamic";
 
 const Home = () => {
 
-const CollectionStore = dynamic(
-  () => import("@/components/Featuers/Home/collectionStore"),
-  {
-    ssr: false,
-    loading: () => <p className="text-center py-10">Loading collection...</p>,
-  }
-);
-
+  const CollectionStore = dynamic(() => import("@/components/Featuers/Home/collectionStore"), {
+    ssr: false
+  });
 
   return <>
 
