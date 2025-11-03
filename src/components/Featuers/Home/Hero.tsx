@@ -21,12 +21,11 @@ const Hero = () => {
 
       <div className="flex justify-center sm:justify-end">
         <Image
-          src="/Medifit.svg"
+          src="/Medifit.webp"
           alt="Hero Image"
           width={500}
           height={500}
-          loading="lazy"
-          priority={false}
+          loading="eager"
           className="w-[250px] sm:w-[500px] "
         />
       </div>

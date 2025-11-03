@@ -1,14 +1,22 @@
 import CategoryShop from "@/components/Featuers/Home/CategoryShop";
 import Clients from "@/components/Featuers/Home/Clients";
-import CollectionStore from "@/components/Featuers/Home/collectionStore";
 import Hero from "@/components/Featuers/Home/Hero";
 import LatestProductCom from "@/components/Featuers/Home/LatestProductCom";
 import SocialMedifit from "@/components/Featuers/Home/SocialMedifit";
 import React from "react";
+import dynamic from "next/dynamic";
 
 const Home = () => {
 
-   
+const CollectionStore = dynamic(
+  () => import("@/components/Featuers/Home/collectionStore"),
+  {
+    ssr: false,
+    loading: () => <p className="text-center py-10">Loading collection...</p>,
+  }
+);
+
+
   return <>
 
 
