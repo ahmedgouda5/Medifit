@@ -1,9 +1,10 @@
+"use client";
 import CategoryShop from "@/components/Featuers/Home/CategoryShop";
 import Clients from "@/components/Featuers/Home/Clients";
 import Hero from "@/components/Featuers/Home/Hero";
 import LatestProductCom from "@/components/Featuers/Home/LatestProductCom";
 import SocialMedifit from "@/components/Featuers/Home/SocialMedifit";
-import React from "react";
+import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
 
 const Home = () => {
@@ -28,7 +29,9 @@ const Home = () => {
       </section>
       <section className="bg-[#E8E6DE] pt-2 mt-[50px] rounded-2xl ">
         <div className="px-[20px] md:px-[80px]">
-          <CollectionStore />
+          <Suspense fallback={<p className="text-center py-10">Loading collection...</p>}>
+            <CollectionStore />
+          </Suspense>
         </div>
       </section>
       <section className="mb-44 mt-[50px]">
