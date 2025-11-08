@@ -68,7 +68,6 @@ const Navbar = () => {
               </li>
             ))}
 
-            {/* Mobile Buttons */}
             <li className="flex justify-center md:hidden">
               <SignedOut>
                 <div className="flex gap-3">
@@ -103,7 +102,6 @@ const Navbar = () => {
             </li>
           </ul>
 
-          {/* Desktop Right Section */}
           <div className="hidden md:flex items-center space-x-6 relative">
             <div
               className="relative text-[#503217] cursor-pointer"
@@ -115,7 +113,6 @@ const Navbar = () => {
               </span>
             </div>
 
-            {/* Clerk Authentication */}
             <SignedOut>
               <div className="flex gap-3">
                 <SignInButton mode="modal">
