@@ -1,27 +1,40 @@
-import { cache } from "react";
+"use client";
+
+import { useEffect, useState } from "react";
 import { Product } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 
-const getProducts = cache(async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products`, {
-    next: { revalidate: 60 }, // يتحدث كل دقيقة
-  });
+export default function Collectionshop() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  if (!res.ok) throw new Error("Failed to fetch products");
-  return res.json();
-});
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("/api/products"); // relative URL
+        if (!res.ok) throw new Error("Failed to fetch products");
+        const data = await res.json();
+        setProducts(data.data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-export default async function Collectionshop() {
-  const data = await getProducts();
-  const products: Product[] = data.data;
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return <div className="text-center mt-10">Loading products...</div>;
+  }
 
   return (
     <main>
       <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-20">
         {products.map((product) => (
           <Link
-            prefetch
             key={product.id}
             href={`/Shop/${product.id}`}
             className="text-center cursor-pointer"
