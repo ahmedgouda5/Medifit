@@ -7,6 +7,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Cart from "./cart";
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 
 const Navbar = () => {
   const router = useRouter();
@@ -20,7 +27,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav>
+      <nav className=" ">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <h1
@@ -31,7 +38,6 @@ const Navbar = () => {
             <span className="ml-2">Medifit</span>
           </h1>
 
-          {/* Menu Button for Mobile */}
           <button
             className="md:hidden text-[#503217]"
             onClick={toggleMenu}
@@ -60,6 +66,27 @@ const Navbar = () => {
               </li>
             ))}
 
+            {/* Mobile Buttons */}
+            <li className="flex justify-center md:hidden">
+              <SignedOut>
+                <div className="flex gap-3">
+                  <SignInButton mode="modal">
+                    <button className="text-[#503217] border border-[#503217] px-3 py-1 rounded-lg hover:bg-[#503217] hover:text-white transition">
+                      Sign In
+                    </button>
+                  </SignInButton>
+                  <SignUpButton mode="modal">
+                    <button className="bg-[#503217] text-white px-3 py-1 rounded-lg hover:bg-[#7a502c] transition">
+                      Sign Up
+                    </button>
+                  </SignUpButton>
+                </div>
+              </SignedOut>
+              <SignedIn>
+                <UserButton afterSignOutUrl="/" />
+              </SignedIn>
+            </li>
+
             {/* Mobile Cart */}
             <li
               className="flex justify-center md:hidden"
@@ -72,8 +99,6 @@ const Navbar = () => {
                 </span>
               </div>
             </li>
-
-          
           </ul>
 
           {/* Desktop Right Section */}
@@ -87,6 +112,26 @@ const Navbar = () => {
                 {cartItems.length}
               </span>
             </div>
+
+            {/* Clerk Authentication */}
+            <SignedOut>
+              <div className="flex gap-3">
+                <SignInButton mode="modal">
+                  <button className="text-[#503217] border border-[#503217] px-3 py-1 rounded-lg hover:bg-[#503217] hover:text-white transition">
+                    Sign In
+                  </button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <button className="bg-[#503217] text-white px-3 py-1 rounded-lg hover:bg-[#7a502c] transition">
+                    Sign Up
+                  </button>
+                </SignUpButton>
+              </div>
+            </SignedOut>
+
+            <SignedIn>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
           </div>
         </div>
       </nav>
