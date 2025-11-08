@@ -1,7 +1,8 @@
 import Button from "@/components/shared/Button"
 import SectionHeading from "@/components/shared/SectionHeading"
-import { ChartScatter, CreditCard, Eye, FolderSync, Headphones, SquarePen, ThumbsUp, Truck } from "lucide-react"
 import Image from "next/image"
+const { ChartScatter, CreditCard, Eye, FolderSync, Headphones, SquarePen, ThumbsUp, Truck } = await import("lucide-react");
+
 
 const Producthealth = () => {
     return (
@@ -13,6 +14,7 @@ const Producthealth = () => {
                     width={70}
                     height={50}
                     className="w-[70px] h-auto"
+                    loading="lazy"
                 />
             </span>
             <header className=" flex items-center justify-center">
@@ -24,6 +26,8 @@ const Producthealth = () => {
                         src="/about/aboutone.png"
                         alt="producthealth"
                         width={332}
+                        loading="lazy"
+
                         height={100}
                         className="w-[80%] sm:w-[250px] md:w-[332px] h-auto"
                     />
@@ -34,6 +38,8 @@ const Producthealth = () => {
                         alt="producthealth"
                         width={500}
                         height={100}
+                        loading="lazy"
+
                         className="w-[90%] sm:w-[350px] md:w-[500px] h-auto"
                     />
                 </div>
@@ -43,6 +49,8 @@ const Producthealth = () => {
                         alt="producthealth"
                         width={333}
                         height={100}
+                        loading="lazy"
+
                         className="w-[80%] sm:w-[250px] md:w-[333px] h-auto"
                     />
                 </div>
@@ -115,6 +123,7 @@ const Producthealth = () => {
                             alt="producthealth"
                             width={240}
                             height={100}
+                            loading="lazy"
                         // className="w-[90%] sm:w-[350px] md:w-[500px] h-auto"
                         />
                         <p className="text-[#8F7D6A] w-60 md:w-100 ">We&apos;re committed to supporting your health journey by offering valuable educational resources, wellness insights, and expert advice to help you make informed decisions.</p>
@@ -140,6 +149,7 @@ const Producthealth = () => {
                             width={200}
                             height={450}
                             className="rounded-xl object-cover"
+                            loading="lazy"
                         />
                     ))}
 

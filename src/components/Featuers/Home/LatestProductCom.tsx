@@ -2,6 +2,7 @@ import SectionHeading from "@/components/shared/SectionHeading";
 import { LatestProduct } from "@/lib/data";
 import { ShieldCheck, ArrowRightLeft, CreditCard } from "lucide-react";
 import Image from "next/image";
+import React from "react";
 
 const LatestProductCom = () => {
   return (
@@ -22,6 +23,8 @@ const LatestProductCom = () => {
               <Image
                 src={product.image}
                 alt={product.name}
+                loading="lazy"
+
                 width={100}
                 height={100}
                 className="object-contain"
@@ -42,6 +45,8 @@ const LatestProductCom = () => {
             <Image
               src="/VectorMokrah.svg"
               alt="Warranty Icon"
+              loading="lazy"
+
               width={70}
               height={70}
               className="relative z-10"
@@ -65,6 +70,8 @@ const LatestProductCom = () => {
               src="/VectorMokrah.svg"
               alt="Fast Delivery"
               width={70}
+              loading="lazy"
+
               height={70}
               className="relative z-10"
             />
@@ -85,6 +92,7 @@ const LatestProductCom = () => {
             <Image
               src="/VectorMokrah.svg"
               alt="Quality Guarantee"
+              loading="lazy"
               width={70}
               height={70}
               className="relative z-10"
@@ -105,4 +113,4 @@ const LatestProductCom = () => {
   );
 };
 
-export default LatestProductCom;
+export default React.memo(LatestProductCom);

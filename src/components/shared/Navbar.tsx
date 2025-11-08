@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { collectionstore, navbarItems } from "@/lib/data";
+import {  navbarItems } from "@/lib/data";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,12 +14,14 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import { useProductStore } from "@/store/useProductStore";
 
 const Navbar = () => {
+    const { products, setProducts } = useProductStore();
+  
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState(collectionstore);
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen((prev) => !prev);
@@ -95,7 +97,7 @@ const Navbar = () => {
               <div className="relative text-[#503217]">
                 <ShoppingCart />
                 <span className="absolute -top-3 left-4 text-sm font-semibold">
-                  {cartItems.length}
+                  {products.length}
                 </span>
               </div>
             </li>
@@ -109,7 +111,7 @@ const Navbar = () => {
             >
               <ShoppingCart />
               <span className="absolute -top-3 left-4 text-sm font-semibold">
-                {cartItems.length}
+                {products.length}
               </span>
             </div>
 
@@ -140,7 +142,6 @@ const Navbar = () => {
       <Cart
         open={isCartOpen}
         onClose={() => setIsCartOpen(false)}
-        cartItems={cartItems}
       />
     </>
   );

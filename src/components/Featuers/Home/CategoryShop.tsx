@@ -30,6 +30,7 @@ const CategoryShop = () => {
                   alt={category.name}
                   width={20}
                   height={20}
+                  loading="lazy"
                 />
               </div>
               <h3 className="text-[#503217]">{category.name}</h3>
@@ -47,7 +48,6 @@ const CategoryShop = () => {
               <div className="flex flex-col items-start gap-3">
                 <h4 className="bg-[#D3744A] text-[#EEEDE7] p-1 rounded text-sm ">{product.name}</h4>
                 <p className="text-[#503217]">{product.desc}</p>
-                <button className="text-[#8F7D6A] border-b-2 border-[#8F7D6A] flex items-center gap-1"><Handbag size={20} />shop now</button>
               </div>
               <div>
                 <Image
@@ -55,8 +55,8 @@ const CategoryShop = () => {
                   width={100}
                   height={100}
                   className="object-contain"
-                  unoptimized
-                  priority
+                  loading="lazy"
+                  
                 />
               </div>
             </div>

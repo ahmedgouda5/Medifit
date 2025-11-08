@@ -15,17 +15,17 @@ const Hero = () => {
           plan.
         </p>
         <div className="flex justify-center sm:justify-start">
-          <Link href="/Shop">   <Button text="Shop now" icon={<Handbag size={15} />} /></Link>
+          <Link prefetch href="/Shop">   <Button text="Shop now" icon={<Handbag size={15} />} /></Link>
         </div>
       </div>
 
       <div className="flex justify-center sm:justify-end">
         <Image
-          src="/Medifit.webp"
+          src="/medifit.svg"
           alt="Hero Image"
           width={500}
           height={500}
-          loading="eager"
+          priority
           className="w-[250px] sm:w-[500px] "
         />
       </div>

@@ -1,7 +1,7 @@
 import { AnimatedTestimonialsDemo } from '@/components/Featuers/shop/AnimatedTestimonialsDemo'
 import Collectionshop from '@/components/Featuers/shop/collectionshop'
 import SectionHeading from '@/components/shared/SectionHeading'
-import { CreditCard, FolderSync, Headphones, SquarePen, Truck } from 'lucide-react'
+const { CreditCard, FolderSync, Headphones, SquarePen, Truck } = await import("lucide-react"); 
 import React from 'react'
 import Button from "@/components/shared/Button"
 import Image from 'next/image'
@@ -9,6 +9,7 @@ import RecentProducts from '@/components/Featuers/shop/recentProducts'
 import { Shop } from '@/lib/data'
 
 const page = () => {
+
     return (
         <main>
             <section>
@@ -64,6 +65,7 @@ const page = () => {
                             width={200}
                             height={450}
                             className="rounded-xl object-cover"
+                            
                         />
                     ))}
 

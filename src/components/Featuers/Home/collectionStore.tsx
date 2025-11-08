@@ -3,6 +3,7 @@ import SectionHeading from "@/components/shared/SectionHeading";
 import { collectionstore } from "@/lib/data";
 import { SquarePen } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const CollectionStore = () => {
@@ -16,7 +17,7 @@ const CollectionStore = () => {
         {/* Products Grid */}
         <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-40">
           {collectionstore.map((product) => (
-            <div key={product.id} className="text-center">
+            <Link key={product.id} href={`/Shop/${product.id}`} prefetch className="cursor-pointer"> <div key={product.id} className="text-center">
               <div className="bg-[#F2F2F2] p-4 rounded-lg flex justify-center items-center h-[200px]">
                 <Image
                   src={product.image}
@@ -24,11 +25,12 @@ const CollectionStore = () => {
                   width={100}
                   height={100}
                   className="object-contain"
+                  priority
                 />
               </div>
               <h4 className="mt-3 text-[#503217] text-left font-semibold">{product.name}</h4>
               <p className="text-[#8F7D6A] text-left text-sm">${product.price} USD</p>
-            </div>
+            </div></Link>
           ))}
         </section>
 

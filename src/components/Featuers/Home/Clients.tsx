@@ -9,7 +9,7 @@ const Clients = () => {
                 <SectionHeading title="Our happy clients" />
             </header>
             <section className='rounded-2xl bg-[#F2F2F2] items-center md:items-start p-10 flex gap-10 flex-col md:flex-row'>
-                <Image src="/fi_11029023.png" alt="client" width={100} height={100} />
+                <Image src="/fi_11029023.png" alt="client" width={100} height={100} loading='lazy' />
                 <p className='text-[#8F7D6A] text-sm'>I’m so impressed with this online medical store. The product selection is extensive and the prices are great. I found everything i needed in one place. The ordering process was easy, delivery was prompt, and the items arrived in perfect condition. Plus, the customer service team was incredibly helpful.</p>
             </section>
             <section className='flex justify-evenly items-center md:items-start gap-20 md:gap-10 mt-20 flex-col md:flex-row  '>
