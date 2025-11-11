@@ -4,7 +4,7 @@ import product from "@/models/product";
 import { NextResponse } from "next/server";
 export const config = {
   api: {
-    bodyParser: false, // علشان نستقبل ملفات
+    bodyParser: false, 
   },
 };
 export async function GET() {
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
   await connectDB();
 
   const data = await request.formData();
-  const file = data.get("image") as File; // لازم الاسم "image"
+  const file = data.get("image") as File;
 
   if (!file) {
     return NextResponse.json({ error: "No file provided" }, { status: 400 });
@@ -39,7 +39,6 @@ export async function POST(request: Request) {
     ).end(buffer);
   });
 
-  // إنشاء المنتج في MongoDB
   const newProduct = await product.create({
     name: data.get("name"),
     price: Number(data.get("price")),

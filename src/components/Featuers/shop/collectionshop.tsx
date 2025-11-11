@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AddProductDialog } from "./AddProduct";
+import MyAnimation from "@/components/shared/animation";
 
 interface Product {
   _id: string;
@@ -34,7 +35,7 @@ export default function CollectionShop() {
   }, []);
 
   if (loading) {
-    return <div className="text-center mt-10">Loading products...</div>;
+    return <div className="flex items-center justify-center"><MyAnimation/></div>;
   }
 
   return (
