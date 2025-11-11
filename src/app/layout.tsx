@@ -33,7 +33,7 @@ export default function RootLayout({
           </nav>
           <div className=" min-h-screen  px-[30px] md:px-[100px] md:pt-[80px] pt-[50px] ">
             {children}
-            <Toaster position="top-right" reverseOrder={false} />
+            <Toaster position="top-center" reverseOrder={false} />
 
           </div>
           <footer className="mt-[50px] bg-[#E8E6DE]  px-[30px] md:px-[100px] ">

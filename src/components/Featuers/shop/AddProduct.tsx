@@ -33,26 +33,66 @@ export function AddProductDialog() {
     };
 
     return (
-        <AlertDialog>
-            <AlertDialogTrigger asChild>
-                <Button variant="outline">Add Product</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-                <AlertDialogHeader>
-                    <AlertDialogTitle>Add New Product</AlertDialogTitle>
-                    <AlertDialogDescription>Fill in the details below</AlertDialogDescription>
-                </AlertDialogHeader>
-                <div className="space-y-2 p-4">
-                    <input placeholder="Name" value={name} onChange={e => setName(e.target.value)} className="border p-2 w-full" />
-                    <input type="number" placeholder="Price" value={price} onChange={e => setPrice(Number(e.target.value))} className="border p-2 w-full" />
-                    <textarea placeholder="Description" value={description} onChange={e => setDescription(e.target.value)} className="border p-2 w-full" />
-                    <input type="file" onChange={e => e.target.files && setImage(e.target.files[0])} />
-                </div>
-                <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleAdd}>Add Product</AlertDialogAction>
-                </AlertDialogFooter>
-            </AlertDialogContent>
-        </AlertDialog>
+      <AlertDialog>
+  <AlertDialogTrigger asChild>
+    <Button
+      variant="outline"
+      className="border-[#8F7D6A] text-[#8F7D6A] hover:bg-[#8F7D6A] hover:text-white transition"
+    >
+      Add Product
+    </Button>
+  </AlertDialogTrigger>
+
+  <AlertDialogContent className="border border-[#8F7D6A] rounded-md shadow-lg">
+    <AlertDialogHeader>
+      <AlertDialogTitle className="text-[#8F7D6A] text-lg font-semibold">
+        Add New Product
+      </AlertDialogTitle>
+      <AlertDialogDescription className="text-[#8F7D6A] text-sm">
+        Fill in the details below
+      </AlertDialogDescription>
+    </AlertDialogHeader>
+
+    <div className="space-y-3 p-4">
+      <input
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="border border-[#8F7D6A] p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-[#8F7D6A]"
+      />
+      <input
+        type="number"
+        placeholder="Price"
+        value={price}
+        onChange={(e) => setPrice(Number(e.target.value))}
+        className="border border-[#8F7D6A] p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-[#8F7D6A]"
+      />
+      <textarea
+        placeholder="Description"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        className="border border-[#8F7D6A] p-2 w-full rounded focus:outline-none focus:ring-2 focus:ring-[#8F7D6A]"
+      />
+      <input
+        type="file"
+        onChange={(e) => e.target.files && setImage(e.target.files[0])}
+        className="border border-[#8F7D6A] p-2 w-full rounded cursor-pointer"
+      />
+    </div>
+
+    <AlertDialogFooter>
+      <AlertDialogCancel className="text-[#8F7D6A] hover:text-white hover:bg-[#8F7D6A] transition rounded px-4 py-2">
+        Cancel
+      </AlertDialogCancel>
+      <AlertDialogAction
+        onClick={handleAdd}
+        className="bg-[#8F7D6A] text-white hover:bg-[#7B6A5B] transition rounded px-4 py-2"
+      >
+        Add Product
+      </AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+
     );
 }
