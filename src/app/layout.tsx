@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { ClerkProvider } from "@clerk/nextjs";
+import { Toaster } from "react-hot-toast";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -32,6 +33,8 @@ export default function RootLayout({
           </nav>
           <div className=" min-h-screen  px-[30px] md:px-[100px] md:pt-[80px] pt-[50px] ">
             {children}
+            <Toaster position="top-right" reverseOrder={false} />
+
           </div>
           <footer className="mt-[50px] bg-[#E8E6DE]  px-[30px] md:px-[100px] ">
             <Footer />

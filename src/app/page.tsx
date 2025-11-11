@@ -6,9 +6,13 @@ import LatestProductCom from "@/components/Featuers/Home/LatestProductCom";
 import SocialMedifit from "@/components/Featuers/Home/SocialMedifit";
 import React, { Suspense } from "react";
 import dynamic from "next/dynamic";
+import StoreUserId from "@/components/user";
+ // استيراد auth
+
+
 
 const Home = () => {
-
+  
   const CollectionStore = dynamic(() => import("@/components/Featuers/Home/collectionStore"), {
     ssr: false
   });
@@ -18,6 +22,7 @@ const Home = () => {
 
 
     <main className="">
+      <StoreUserId/>
       <section className="border-b-3 pb-[50px]">
         <Hero />
       </section>

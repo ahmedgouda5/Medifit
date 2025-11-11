@@ -1,13 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Image from "next/image";
-import { collectionstore, Shop } from "@/lib/data";
 import Button from "@/components/shared/Button";
 import {
   CreditCard,
   FolderSync,
   Headphones,
   ShoppingCart,
-  SquarePen,
   Truck,
 } from "lucide-react";
 import RecentProducts from "@/components/Featuers/shop/recentProducts";
@@ -15,20 +14,39 @@ import { AnimatedTestimonialsDemo } from "@/components/Featuers/shop/AnimatedTes
 import SectionHeading from "@/components/shared/SectionHeading";
 import { useProductStore } from "@/store/useProductStore";
 import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Page() {
-  const { id } = useParams();
+  const { id } = useParams(); // ده الـ _id من الرابط
   const { products, setProducts } = useProductStore();
+  const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
-  const data = collectionstore.find((item) => item.id === Number(id));
+  useEffect(() => {
+    async function fetchProduct() {
+      try {
+        const res = await fetch(`/api/products`);
+        const allProducts = await res.json();
 
-  if (!data) {
-    return <div className="text-center text-red-500">Product not found</div>;
-  }
+        // فلترة حسب _id
+        const product = allProducts.find((item: any) => item._id === id);
+        setData(product);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProduct();
+  }, [id]);
+
+  if (loading) return <p className="text-center">Loading...</p>;
+  if (!data) return <p className="text-center text-red-500">Product not found</p>;
 
   return (
     <main>
-      <div className="p-6 flex flex-col md:flex-row gap-10 justify-between items-start">
+      <div className="p-6 flex flex-col md:flex-row gap-10  items-start">
         <div className="bg-[#F2F2F2] p-4 rounded-lg">
           <Image
             src={data.image}
@@ -68,36 +86,10 @@ export default function Page() {
       </section>
 
       <RecentProducts />
-
-      <section className="flex flex-col md:flex-row items-center justify-between gap-10 mt-5 bg-[#F2F2F2] p-10 rounded-2xl">
-        <div className="flex-1 w-full">
-          <h4 className="text-[#503217] text-2xl font-semibold mb-2">
-            Join our trustable Medifit product community
-          </h4>
-          <p className="text-[#8F7D6A] mb-6">
-            Join us as we build a community where wellness is accessible,
-            education is empowering, and health is a shared journey.
-          </p>
-          <Button text="Get started" icon={<SquarePen size={15} />} />
-        </div>
-        <div className="flex-shrink-0 grid grid-cols-2 gap-4">
-          {Shop.map((pec) => (
-            <Image
-              key={pec.id}
-              src={pec.image}
-              alt="collectionstore"
-              width={200}
-              height={450}
-              className="rounded-xl object-cover"
-            />
-          ))}
-        </div>
-      </section>
     </main>
   );
 }
 
-// مكون فرعي عشان يقلل التكرار
 function Feature({ icon, title }: { icon: React.ReactNode; title: string }) {
   return (
     <div className="flex items-center flex-col justify-center">

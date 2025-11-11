@@ -8,7 +8,8 @@ import Image from 'next/image'
 import RecentProducts from '@/components/Featuers/shop/recentProducts'
 import { Shop } from '@/lib/data'
 
-const page = () => {
+const page = async () => {
+   
 
     return (
         <main>

@@ -1,21 +1,28 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Product } from "@/lib/data";
 import Image from "next/image";
 import Link from "next/link";
+import { AddProductDialog } from "./AddProduct";
 
-export default function Collectionshop() {
+interface Product {
+  _id: string;
+  name: string;
+  price: number;
+  image: string;
+}
+
+export default function CollectionShop() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("/api/products"); // relative URL
+        const res = await fetch("/api/products");
         if (!res.ok) throw new Error("Failed to fetch products");
         const data = await res.json();
-        setProducts(data.data);
+        setProducts(data.data || data || []);
       } catch (err) {
         console.error(err);
       } finally {
@@ -31,33 +38,38 @@ export default function Collectionshop() {
   }
 
   return (
-    <main>
-      <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-20">
-        {products.map((product) => (
-          <Link
-            key={product.id}
-            href={`/Shop/${product.id}`}
-            className="text-center cursor-pointer"
-          >
-            <div className="bg-[#F2F2F2] p-4 rounded-lg flex justify-center items-center h-[200px]">
-              <Image
-                src={product.image}
-                alt={product.name}
-                width={100}
-                height={100}
-                className="object-contain"
-                priority
-              />
-            </div>
-            <h4 className="mt-3 text-[#503217] text-left font-semibold">
-              {product.name}
-            </h4>
-            <p className="text-[#8F7D6A] text-left text-sm">
-              ${product.price} USD
-            </p>
-          </Link>
-        ))}
-      </section>
-    </main>
+   <main className="space-y-[30px]">
+  <section>
+    <AddProductDialog />
+  </section>
+
+  <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-20">
+    {products.map((product) => (
+      <Link
+        key={product._id}
+        href={`/Shop/${product._id}`}
+        className="text-center cursor-pointer"
+      >
+        <div className="w-full aspect-square  flex items-center justify-center p-2 rounded">
+          <Image
+            src={product.image}
+            alt={product.name}
+            width={200}
+            height={200}
+            className="object-cover w-full h-full"
+            priority
+          />
+        </div>
+        <h4 className="mt-3 text-[#503217] text-left font-semibold">
+          {product.name}
+        </h4>
+        <p className="text-[#8F7D6A] text-left text-sm">
+          ${product.price} USD
+        </p>
+      </Link>
+    ))}
+  </section>
+</main>
+
   );
 }
