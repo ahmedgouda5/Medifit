@@ -28,7 +28,7 @@ const Cart = ({ open, onClose }: CartProps) => {
     <>
       {/* Overlay */}
       <div
-        className={`fixed inset-0 bg-black z-20 transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-black z-0 transition-opacity duration-300 ${
           open ? "opacity-50 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={onClose}

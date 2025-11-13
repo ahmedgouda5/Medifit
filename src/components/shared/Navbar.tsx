@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import {  navbarItems } from "@/lib/data";
+import { navbarItems } from "@/lib/data";
 import { ShoppingCart, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,8 +17,7 @@ import {
 import { useProductStore } from "@/store/useProductStore";
 
 const Navbar = () => {
-    const { products, setProducts } = useProductStore();
-  
+  const { products } = useProductStore();
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -29,7 +28,7 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className=" ">
+      <nav className="z-20 sticky">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <h1
@@ -40,6 +39,7 @@ const Navbar = () => {
             <span className="ml-2">Medifit</span>
           </h1>
 
+          {/* Mobile Menu Button */}
           <button
             className="md:hidden text-[#503217]"
             onClick={toggleMenu}
@@ -68,6 +68,20 @@ const Navbar = () => {
               </li>
             ))}
 
+            {/* Dashboard يظهر فقط عند تسجيل الدخول */}
+            <SignedIn>
+              <li className="text-center">
+                <Link
+                  href="/Dashboard"
+                  className="block text-[#503217] font-medium hover:text-[#7a502c] transition"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Dashboard
+                </Link>
+              </li>
+            </SignedIn>
+
+            {/* Mobile Auth Buttons */}
             <li className="flex justify-center md:hidden">
               <SignedOut>
                 <div className="flex gap-3">
@@ -102,6 +116,7 @@ const Navbar = () => {
             </li>
           </ul>
 
+          {/* Desktop Right Section */}
           <div className="hidden md:flex items-center space-x-6 relative">
             <div
               className="relative text-[#503217] cursor-pointer"
@@ -136,10 +151,7 @@ const Navbar = () => {
       </nav>
 
       {/* Cart Drawer */}
-      <Cart
-        open={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-      />
+      <Cart open={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </>
   );
 };

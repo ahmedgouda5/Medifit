@@ -40,9 +40,6 @@ export default function CollectionShop() {
 
   return (
    <main className="space-y-[30px]">
-  <section>
-    <AddProductDialog />
-  </section>
 
   <section className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mb-20">
     {products.map((product) => (
