@@ -64,6 +64,13 @@ export interface Product {
   price?: number;
 }
 
+export interface ProductApi {
+  _id: string;
+  name: string;
+  image: string;
+  desc?: string;
+  price?: number;
+}
 export const categoriesProducts: Product[] = [
   {
     id: 1,

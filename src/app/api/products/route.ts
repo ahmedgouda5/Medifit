@@ -49,3 +49,23 @@ export async function POST(request: Request) {
 
   return NextResponse.json(newProduct);
 }
+
+
+export async function DELETE(request: Request) {
+  await connectDB();
+  const { id } = await request.json();
+  const deletedProduct = await product.findByIdAndDelete(id);
+  return NextResponse.json(deletedProduct);
+}
+
+
+export async function PATCH(request: Request) {
+  await connectDB();
+  const { id, name, price, description } = await request.json();
+  const updatedProduct = await product.findByIdAndUpdate(
+    id,
+    { name, price, description },
+    { new: true }
+  );
+  return NextResponse.json(updatedProduct);
+}
